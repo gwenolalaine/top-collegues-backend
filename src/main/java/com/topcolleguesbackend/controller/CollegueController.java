@@ -1,6 +1,8 @@
 package com.topcolleguesbackend.controller;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 import javax.annotation.PostConstruct;
 
@@ -43,8 +45,23 @@ public class CollegueController {
 	}
 	
 	@PutMapping(value="/{nom}/score")
-	public Collegue setCollegueScore(@PathVariable String nom, @RequestBody Collegue collegue) {
-		return this.collegueRepository.save(collegue);
+	public Collegue setCollegueScore(@RequestBody Map<String, String> avis, @PathVariable String nom) {
+		Optional<Collegue> opt = collegueRepository.findAll().stream().filter(col -> col.getNom().equals(nom)).findFirst();
+		if(opt.isPresent()){
+			Collegue collegue = opt.get();
+			if(avis.get("avis").equals("jaime")){
+				collegue = opt.get();
+				collegue.setScore(collegue.getScore()+10);
+				collegueRepository.save(collegue);	
+			}
+			if(avis.get("avis").equals("jeDeteste")){
+				collegue = opt.get();
+				collegue.setScore(collegue.getScore()-5);
+				collegueRepository.save(collegue);	
+			}
+			return collegue;
+		}
+		return null;
 	}
 	
 	@PostMapping
