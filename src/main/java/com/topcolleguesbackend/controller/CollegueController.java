@@ -70,8 +70,8 @@ public class CollegueController {
 		return this.collegueRepository.save(collegue);
 	}
 	
-	 @DeleteMapping
-	 public void deleteCollegue(@RequestBody Collegue collegue) {
-		this.collegueRepository.delete(collegue);
+	 @DeleteMapping(value="/{nom}")
+	 public void deleteCollegue(@PathVariable String nom) {
+		this.collegueRepository.delete(this.collegueRepository.findByNom(nom));
 	 }
 }
