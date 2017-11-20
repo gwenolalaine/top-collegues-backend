@@ -35,10 +35,10 @@
 				<activeByDefault>true</activeByDefault>
 			</activation>
 			<properties>
-				<jdbc.driver>com.mysql.jdbc.Driver</jdbc.driver>
-				<jdbc.url>jdbc:mysql://localhost:3306/top</jdbc.url>
-				<jdbc.user>top</jdbc.user>
-				<jdbc.pass>top</jdbc.pass>
+				<jdbc.driver>org.mariadb.jdbc.Driver</jdbc.driver>
+				<jdbc.url>jdbc:mariadb://localhost:3306/topcollegue</jdbc.url>
+				<jdbc.user>root</jdbc.user>
+				<jdbc.pass></jdbc.pass>
 				<jpa.hibernate.ddl>create-drop</jpa.hibernate.ddl>
 				<jdbc.dialect>org.hibernate.dialect.MySQL5InnoDBDialect</jdbc.dialect>
 				<jdbc.connections.max.active>5</jdbc.connections.max.active>
@@ -47,7 +47,7 @@
 		<profile>
 			<id>prod</id>
 			<properties>
-				<jdbc.driver>com.mysql.jdbc.Driver</jdbc.driver>
+				<jdbc.driver>org.mariadb.jdbc.Driver</jdbc.driver>
 				<jdbc.url>jdbc:mysql://${env.MYSQL_ADDON_HOST}:${env.MYSQL_ADDON_PORT}/${env.MYSQL_ADD
 					ON_DB}</jdbc.url>
 				<jdbc.user>${env.MYSQL_ADDON_USER}</jdbc.user>
